@@ -1,7 +1,10 @@
+"""Case-study #10 рекурсии
+Разработчики: Shmatov D. 70%, Bayanova A. 70% """
+
+
 from turtle import *
 
-
-def k(a,n):
+def kvdrt(a, n):
     """ Убегающий квадрат """
     if n == 0:
         return
@@ -12,93 +15,93 @@ def k(a,n):
     for _ in range(4):
         forward(a)
         right(90)
-    return k(a*0.9, n-1)
+    return kvdrt(a * 0.9, n-1)
 
-def tree(a,n):
+def binary_tree(a, n):
     """ Двоичное дерево """
     if a > 5:
         forward(a)
         right(20)
-        tree(a-15,n)
+        binary_tree(a-15, n)
         left(40)
-        tree(a-15,n)
+        binary_tree(a-15, n)
         right(20)
         backward(a)
 
-def koch(n, a):
+def koch_curve(n, a):
     """ Кривая Коха """
     if n == 0:
         forward(a)
     else:
-        koch(n-1, a/3)
+        koch_curve(n-1, a/3)
         left(60)
-        koch(n-1, a/3)
+        koch_curve(n-1, a/3)
         right(120)
-        koch(n-1, a/3)
+        koch_curve(n-1, a/3)
         left(60)
-        koch(n-1, a/3)
+        koch_curve(n-1, a/3)
 
 #снежинка коха
 
-def led_1(n, a):
+def fractal1(n, a):
     """ Ледяной фрактал """
     if n == 0:
         forward(a)
     else:
-        led_1(n - 1, a)
+        fractal1(n - 1, a)
         left(90)
-        led_1(n - 1, a / 2)
+        fractal1(n - 1, a / 2)
         right(180)
-        led_1(n - 1, a / 2)
+        fractal1(n - 1, a / 2)
         left(90)
-        led_1(n - 1, a)
+        fractal1(n - 1, a)
 
-def led_2(n, a):
+def fractal2(n, a):
     """ Второй ледяной """
     if n == 0:
         forward(a)
     else:
-        led_2(n - 1, a * 2)
+        fractal2(n - 1, a * 2)
         left(120)
-        led_2(n - 1, a)
+        fractal2(n - 1, a)
         right(180)
-        led_2(n - 1, a)
+        fractal2(n - 1, a)
         left(120)
-        led_2(n - 1, a)
+        fractal2(n - 1, a)
         right(180)
-        led_2(n - 1, a)
+        fractal2(n - 1, a)
         left(120)
-        led_2(n - 1, a * 2)
+        fractal2(n - 1, a * 2)
 
-def mink(n, a):
+def minkovsky_curve(n, a):
     """ Кривая Минковского """
     if n == 0:
         forward(a)
     else:
-        mink(n-1, a/4)
+        minkovsky_curve(n-1, a/4)
         left(90)
-        mink(n-1, a/4)
+        minkovsky_curve(n-1, a/4)
         right(90)
-        mink(n-1, a/4)
+        minkovsky_curve(n-1, a/4)
         right(90)
-        mink(n-1, a / 4)
-        mink(n - 1, a / 4)
+        minkovsky_curve(n-1, a / 4)
+        minkovsky_curve(n - 1, a / 4)
         left(90)
-        mink(n - 1, a / 4)
+        minkovsky_curve(n - 1, a / 4)
         left(90)
-        mink(n - 1, a / 4)
+        minkovsky_curve(n - 1, a / 4)
         right(90)
-        mink(n - 1, a / 4)
+        minkovsky_curve(n - 1, a / 4)
 
-def levi(n, a):
+def levi_curve(n, a):
     """ Кривая Леви """
     if n == 0:
-        forward(d)
+        forward(a)
     else:
         left(45)
-        levi(n - 1, d)
+        levi_curve(n - 1, a)
         right(90)
-        levi(n-1, d)
+        levi_curve(n-1, a)
         left(45)
 
 # дракон
@@ -107,10 +110,25 @@ def main():
     up()
     goto(-100,0)
     down()
-    b = int(input('Выбирите рекурсию (1-10):'))
+    b = int(input('Выбирите рекурсию (1-9):'))
     n = int(input('Глубина рекурсии:'))
     a = int(input('Длина стороны:'))
+    if b == 1:
+        kvdrt(a,n)
+    if b == 2:
+        binary_tree(a, n)
     if b == 3:
-        koch(n, a)
+        koch_curve(n, a)
+    if b == 5:
+        fractal1(n, a)
+    if b == 6:
+        fractal2(n, a)
+    if b == 7:
+        minkovsky_curve(n, a)
+    if b == 8:
+        levi_curve(n, a)
+
+
+
 
 main()
